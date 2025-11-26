@@ -82,6 +82,7 @@ export default function Home() {
 
         {error && (
           <Alert
+            variant="error"
             title="Unable to fetch return"
             message={error}
           />

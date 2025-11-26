@@ -2,6 +2,7 @@
 
 import React from "react"
 import { ReturnItemCard } from "./ReturnItemCard";
+import { Alert } from "./Alert";
 import { ReturnItem } from "../types/returns";
 import { MESSAGES } from "../lib/constants";
 
@@ -27,19 +28,14 @@ export const ReturnItemsInspector = ({ items, onUpdateItem }: ReturnItemsInspect
         </div>
 
         {pendingItems.length === 0 && completedItems.length > 0 && (
-          <div className="py-12 text-center bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl border border-green-100 mb-8">
-            <div className="mx-auto h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-              <svg className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
+          <Alert variant="success" size="large">
             <h3 className="text-green-800 font-bold text-2xl mb-2">
               All Items Inspected!
             </h3>
             <p className="text-green-600 text-lg">
               {MESSAGES.READY_FOR_NEXT_SCAN}
             </p>
-          </div>
+          </Alert>
         )}
 
         <div className="space-y-4">
