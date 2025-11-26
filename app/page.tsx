@@ -6,6 +6,8 @@ import { ReturnDetails } from "./components/ReturnDetails";
 import { ReturnItemsInspector } from "./components/ReturnItemsInspector";
 import { BarcodeScanner } from "./components/BarcodeScanner";
 import { ToastContainer } from "./components/Toast";
+import { LoadingSpinner } from "./components/LoadingSpinner";
+import { Alert } from "./components/Alert";
 import { useToast } from "./hooks/useToast";
 import { MESSAGES } from "./lib/constants";
 
@@ -76,25 +78,13 @@ export default function Home() {
           onClear={handleClearSearch}
         />
 
-        {loading && (
-          <div className="py-20 text-center">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent shadow-lg"></div>
-            <p className="mt-6 text-lg font-medium text-gray-600 animate-pulse">{MESSAGES.LOADING}</p>
-          </div>
-        )}
+        {loading && <LoadingSpinner message={MESSAGES.LOADING} />}
 
         {error && (
-          <div className="mt-6 p-6 bg-red-50 border border-red-100 rounded-2xl shadow-sm animate-fade-in">
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <span className="text-2xl">⚠️</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-red-900 text-lg mb-1">Unable to fetch return</h3>
-                <p className="text-red-700">{error}</p>
-              </div>
-            </div>
-          </div>
+          <Alert
+            title="Unable to fetch return"
+            message={error}
+          />
         )}
 
         {returnData && !loading && (
